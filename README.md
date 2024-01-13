@@ -2,7 +2,7 @@
 
 
 # Website
-Automation
+Automation:
 
 Precheck
 1. Check if Node.js is on your system
