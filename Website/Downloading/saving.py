@@ -1,4 +1,5 @@
 from playwright.sync_api import sync_playwright
+import re
 import time
 
 def handle_download(download):
@@ -6,6 +7,16 @@ def handle_download(download):
     download_path = "C:/Users/nairv/Downloads/video.mp4"
     download.save_as(download_path)
     print(f"File downloaded to {download_path}")
+
+def modify_youtube_url(url):
+    # Check if the URL starts with 'https://', if not, prepend it
+    if not url.startswith('https://'):
+        url = 'https://' + url
+
+    # Check if 'youtube' is followed by 'vvv.com', if not, insert 'vvv'
+    url = re.sub(r'(youtube)(\.com)', r'\1vvv\2', url)
+
+    return url
 
 with sync_playwright() as p:
     # Create browser
@@ -15,7 +26,9 @@ with sync_playwright() as p:
     # Set up download event listener before triggering the download
     page.on('download', handle_download)
 
-    page.goto('https://www.youtubevvv.com/watch?v=7l520bGKuxA&ab_channel=MovieRecaps')
+    # link = modify_youtube_url(input().strip())
+    link = 'https://www.youtubevvv.com/watch?v=7l520bGKuxA&ab_channel=MovieRecaps'
+    page.goto(link)
     page.is_visible('div.sc-1vkjw2x-1 embFVV') #div class name
 
     # find the Download button
@@ -27,8 +40,5 @@ with sync_playwright() as p:
     enabled_button.click()
     print('downloading')
 
-    # Wait for downloading to finish
+    # Wait for downloading to finish (change time if needed)
     page.wait_for_timeout(30000)
-
-
-# <button class="b0kwwh-0 dkrhAU uxhyop-2 TPBMx"><span class="uxhyop-1 iCoEVA">Download</span></button>
