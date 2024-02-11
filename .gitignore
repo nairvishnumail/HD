@@ -1,0 +1,13 @@
+.DS_Store
+Downloader/new/
+Downloader/new
+__pycache__/
+Downloader/audio/
+Downloader/data/
+Downloader/videos/
+Downloader/raw_videos/
+Downloader/logs/
+Downloader/processing/
+.venv/
+.vscode/
+Downloader/ytscraper/pyvenv.cfg
