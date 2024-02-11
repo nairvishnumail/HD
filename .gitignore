@@ -10,4 +10,4 @@ Downloader/logs/
 Downloader/processing/
 .venv/
 .vscode/
-Downloader/ytscraper/pyvenv.cfg
+ytscraper/pyvenv.cfg
